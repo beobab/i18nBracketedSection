@@ -9,13 +9,16 @@ At the moment, this is standalone class only.
 
 Requirements:
 
+```
 var text = @"A big long piece of text, populated with [[[some translatable bits]]], and some other
 [[[bits with %0 parameters|||3]]], as well as existing [[[%0 translatable elements|||(((enuf)))]]].
 It's worth noting that [[[it///context]]] and the other [[[it///cousin]]] are also handled.";
+```
 
 A function which takes a string and a context, and can translate it. I was thinking either 
 HttpContext.Current.GetText or NGetText, but this contrived example works too:
 
+```
 Func<string, string, string> getTextWithContext = (s, ctx) => {
 	if (s == "some translatable bits") return "Sum TranSLATEable bytes";
 	if (s == "enuf") return "enough";
@@ -23,10 +26,13 @@ Func<string, string, string> getTextWithContext = (s, ctx) => {
 	if (ctx == "cousin") return "Cousin IT from the Adaams Family";
 	return s;
 };
+```
 
 Usage: 
 
+```
 var translated = i18nBracketedSection.FindAndTranslateBrackets(text, getTextWithContext);
+```
 
 =>
 
